@@ -13,14 +13,6 @@
         <action
             android:id="@+id/action_dogListFragment_to_dogDetailsFragment"
             app:destination="@id/dogDetailsFragment" />
-        <argument
-            android:name="breed"
-            android:defaultValue="no breed"
-            app:argType="string" />
-        <argument
-            android:name="photo"
-            android:defaultValue="0"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/dogDetailsFragment"

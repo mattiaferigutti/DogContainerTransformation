@@ -13,7 +13,9 @@ import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.transition.Hold
 import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialElevationScale
 import kotlinx.android.synthetic.main.fragment_dog_list.*
 
 class DogListFragment : Fragment() {
@@ -32,7 +34,6 @@ class DogListFragment : Fragment() {
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
 
-
         val dogList = listOf<Dog>(
             Dog("Dog1", R.drawable.dog1),
             Dog("Dog2", R.drawable.dog2),
@@ -43,8 +44,11 @@ class DogListFragment : Fragment() {
             Dog("Dog7", R.drawable.dog7),
         )
 
-
         val adapter = RecyclerAdapter(dogList) { view, dog ->
+            reenterTransition = MaterialElevationScale(true).apply {
+                duration = resources.getInteger(R.integer.motion_duration_small).toLong()
+            }
+
             val extras = FragmentNavigatorExtras(view to dog.breed)
 
             navigate(DogListFragmentDirections.actionDogListFragmentToDogDetailsFragment(dog.breed, dog.photo), extras)

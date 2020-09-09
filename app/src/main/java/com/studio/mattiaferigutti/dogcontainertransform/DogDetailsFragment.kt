@@ -18,11 +18,10 @@ class DogDetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val transition = TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
-            duration = 300L
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            duration = 10000L
+            isElevationShadowEnabled = true
         }
-        sharedElementEnterTransition = transition
-        sharedElementReturnTransition = transition
     }
 
     override fun onCreateView(
